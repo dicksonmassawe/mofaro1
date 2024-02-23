@@ -1,0 +1,722 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+
+  <xacro:include filename="colors.xacro" />
+  <xacro:include filename="gazebo_control.xacro" />
+
+  <!-- Base Link-->
+  <link name="base_link">
+
+  </link>
+
+  <!-- Rear Chassis -->
+  <link
+    name="rear_chassis">
+    <inertial>
+
+      <origin
+        xyz="0.17777 -0.08921 0.0015186"
+        rpy="0 0 0" />
+
+      <mass
+        value="72.221" />
+
+      <inertia
+        ixx="0.71317"
+        ixy="1.9346E-08"
+        ixz="2.7431E-07"
+        iyy="2.2427"
+        iyz="1.1269E-08"
+        izz="2.1472" />
+
+    </inertial>
+
+    <visual>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/rear_chassis.STL" />
+      </geometry>
+
+      <material
+        name="orange" />
+
+    </visual>
+
+    <collision>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/rear_chassis.STL" />
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  <joint name="rear_chassis_joint" type="fixed">
+
+    <parent link="base_link" />
+
+    <child link="rear_chassis" />
+
+    <origin xyz="0.625 0 0.790" />
+
+  </joint>
+
+  <gazebo reference="rear_chassis">
+		<material>Gazebo/orange</material>
+	</gazebo>
+
+  <!-- Rear Left Wheel-->
+  <link
+    name="rear_left_wheel">
+
+    <inertial>
+
+      <origin
+        xyz="3.7371E-09 -9.7686E-10 -0.073056"
+        rpy="0 0 0" />
+
+      <mass
+        value="25.916" />
+
+      <inertia
+        ixx="0.18093"
+        ixy="-3.7773E-08"
+        ixz="-6.6434E-09"
+        iyy="0.18093"
+        iyz="-4.5415E-08"
+        izz="0.32073" />
+
+    </inertial>
+
+    <visual>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/rear_left_wheel.STL" />
+      </geometry>
+
+      <material
+        name="black" />
+
+    </visual>
+
+    <collision>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/rear_left_wheel.STL" />
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  <joint
+    name="rear_left_wheel_joint"
+    type="continuous">
+
+    <origin
+      xyz="-0.075 0.345 -0.525"
+      rpy="1.5708 0 0" />
+
+    <parent
+      link="rear_chassis" />
+
+    <child
+      link="rear_left_wheel" />
+
+    <axis
+      xyz="0 0 1" />
+
+    <limit
+      effort="1000"
+      velocity="20.944" />
+
+  </joint>
+
+  <gazebo reference="rear_left_wheel">
+		<material>Gazebo/black</material>
+	</gazebo>
+
+  <!-- Rear Right Wheel-->
+  <link
+    name="rear_right_wheel">
+
+    <inertial>
+
+      <origin
+        xyz="4.269E-09 -2.038E-10 0.072994"
+        rpy="0 0 0" />
+
+      <mass
+        value="25.916" />
+
+      <inertia
+        ixx="0.18093"
+        ixy="-7.5935E-08"
+        ixz="1.3746E-08"
+        iyy="0.18093"
+        iyz="4.4935E-08"
+        izz="0.32073" />
+
+    </inertial>
+
+    <visual>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/rear_right_wheel.STL" />
+      </geometry>
+
+      <material
+        name="black" />
+
+    </visual>
+
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/rear_right_wheel.STL" />
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  <joint
+    name="rear_right_wheel_joint"
+    type="continuous">
+
+    <origin
+      xyz="-0.075 -0.345 -0.525"
+      rpy="1.5708 0 0" />
+
+    <parent
+      link="rear_chassis" />
+
+    <child
+      link="rear_right_wheel" />
+
+    <axis
+      xyz="0 0 -1" />
+
+    <limit
+      effort="1000"
+      velocity="20.944" />
+
+  </joint>
+
+  <gazebo reference="real_right_wheel">
+		<material>Gazebo/black</material>
+	</gazebo>
+
+  <!-- Yaw and Roll LInk-->
+  <link
+    name="yaw_roll">
+
+    <inertial>
+
+      <origin
+        xyz="0.17123 -0.014607 -4.3195E-10"
+        rpy="0 0 0" />
+
+      <mass
+        value="19.626" />
+
+      <inertia
+        ixx="0.14723"
+        ixy="-0.0086497"
+        ixz="1.7382E-12"
+        iyy="0.17956"
+        iyz="2.8608E-10"
+        izz="0.12651" />
+
+    </inertial>
+
+    <visual>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/yaw_roll.STL" />
+      </geometry>
+
+      <material
+        name="yellow" />
+
+    </visual>
+
+    <collision>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/yaw_roll.STL" />
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  <joint
+    name="yaw_roll_joint"
+    type="revolute">
+
+    <origin
+      xyz="0.72 0 0"
+      rpy="1.5708 0 0" />
+
+    <parent
+      link="rear_chassis" />
+
+    <child
+      link="yaw_roll" />
+
+    <axis
+      xyz="-1 0 0" />
+
+    <limit
+      lower="-0.7854"
+      upper="0.7854"
+      effort="0"
+      velocity="0" />
+
+  </joint>
+
+  <gazebo reference="yaw_roll">
+		<material>Gazebo/yellow</material>
+	</gazebo>
+
+  <!-- Fore Chassis-->
+  <link
+    name="fore_chassis">
+
+    <inertial>
+
+      <origin
+        xyz="0.42914 -0.099886 -2.7376E-08"
+        rpy="0 0 0" />
+
+      <mass
+        value="67.88" />
+
+      <inertia
+        ixx="0.64417"
+        ixy="0.00033649"
+        ixz="2.8914E-07"
+        iyy="1.2629"
+        iyz="5.081E-09"
+        izz="1.3574" />
+
+    </inertial>
+
+    <visual>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/fore_chassis.STL" />
+      </geometry>
+
+      <material
+        name="orange" />
+
+    </visual>
+
+    <collision>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/fore_chassis.STL" />
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  <joint
+    name="fore_chassis_joint"
+    type="revolute">
+
+    <origin
+      xyz="0.25 0 0"
+      rpy="0 0 0" />
+
+    <parent
+      link="yaw_roll" />
+
+    <child
+      link="fore_chassis" />
+
+    <axis
+      xyz="0 -0.99683 0.079557" />
+
+    <limit
+      lower="-0.7854"
+      upper="0.7854"
+      effort="758.15"
+      velocity="0.0093313" />
+
+  </joint>
+
+  <gazebo reference="fore_chassis">
+		<material>Gazebo/orange</material>
+	</gazebo>
+
+  <!-- Fore Left Wheel-->
+  <link
+    name="fore_left_wheel">
+
+    <inertial>
+
+      <origin
+        xyz="3.7121E-09 -9.6784E-10 -0.073056"
+        rpy="0 0 0" />
+
+      <mass
+        value="25.916" />
+
+      <inertia
+        ixx="0.18093"
+        ixy="-3.8285E-08"
+        ixz="-7.7539E-09"
+        iyy="0.18093"
+        iyz="-4.4665E-08"
+        izz="0.32073" />
+
+    </inertial>
+
+    <visual>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/fore_left_wheel.STL" />
+      </geometry>
+
+      <material
+        name="black" />
+
+    </visual>
+
+    <collision>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/fore_left_wheel.STL" />
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  <joint
+    name="fore_left_wheel_joint"
+    type="continuous">
+
+    <origin
+      xyz="0.67 -0.525 -0.345"
+      rpy="0 0 0.013173" />
+
+    <parent
+      link="fore_chassis" />
+
+    <child
+      link="fore_left_wheel" />
+
+    <axis
+      xyz="0 0 1" />
+
+    <limit
+      effort="1000"
+      velocity="20.944" />
+
+  </joint>
+
+  <gazebo reference="fore_left_wheel">
+		<material>Gazebo/black</material>
+	</gazebo>
+
+  <!-- Fore Right Wheel-->
+  <link
+    name="fore_right_wheel">
+
+    <inertial>
+
+      <origin
+        xyz="4.2708E-09 -2.0452E-10 0.072994"
+        rpy="0 0 0" />
+
+      <mass
+        value="25.916" />
+
+      <inertia
+        ixx="0.18093"
+        ixy="-7.5308E-08"
+        ixz="1.4683E-08"
+        iyy="0.18093"
+        iyz="4.388E-08"
+        izz="0.32073" />
+
+    </inertial>
+
+    <visual>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/fore_right_wheel.STL" />
+      </geometry>
+
+      <material
+        name="black" />
+
+    </visual>
+
+    <collision>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/fore_right_wheel.STL" />
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  <joint
+    name="fore_right_wheel_joint"
+    type="continuous">
+
+    <origin
+      xyz="0.67 -0.525 0.345"
+      rpy="0 0 0" />
+
+    <parent
+      link="fore_chassis" />
+
+    <child
+      link="fore_right_wheel" />
+
+    <axis
+      xyz="0 0 -1" />
+
+    <limit
+      effort="1000"
+      velocity="20.944" />
+
+  </joint>
+
+  <gazebo reference="fore_right_wheel">
+		<material>Gazebo/black</material>
+	</gazebo>
+
+  <!-- Control Box-->
+  <link
+    name="control_box">
+
+    <inertial>
+
+      <origin
+        xyz="0.052548 -0.15624 0.0023316"
+        rpy="0 0 0" />
+
+      <mass
+        value="204.74" />
+
+      <inertia
+        ixx="3.7741"
+        ixy="-0.026381"
+        ixz="-2.6289E-11"
+        iyy="9.292"
+        iyz="-4.7953E-10"
+        izz="6.5153" />
+
+    </inertial>
+
+    <visual>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/control_box.STL" />
+      </geometry>
+
+      <material
+        name="green" />
+
+    </visual>
+
+    <collision>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/control_box.STL" />
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  <joint
+    name="control_box_joint"
+    type="fixed">
+
+    <origin
+      xyz="0.517 0.282 -0.002"
+      rpy="0 0 0" />
+
+    <parent
+      link="fore_chassis" />
+
+    <child
+      link="control_box" />
+
+    <axis
+      xyz="0 0 0" />
+
+  </joint>
+
+  <gazebo reference="control_box">
+		<material>Gazebo/green</material>
+	</gazebo>
+
+  <!-- Tank-->
+  <link
+    name="tank">
+
+    <inertial>
+
+      <origin
+        xyz="1.3878E-17 0.0024886 -6.8912E-17"
+        rpy="0 0 0" />
+
+      <mass
+        value="450.67" />
+
+      <inertia
+        ixx="32.38"
+        ixy="2.7422E-16"
+        ixz="-1.1129E-15"
+        iyy="58.595"
+        iyz="1.068E-15"
+        izz="51.242" />
+
+    </inertial>
+
+    <visual>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/tank.STL" />
+      </geometry>
+
+      <material
+        name="blue" />
+
+    </visual>
+
+    <collision>
+
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+
+      <geometry>
+        <mesh
+          filename="package://mofaro1/meshes/tank.STL" />
+      </geometry>
+
+    </collision>
+
+  </link>
+
+  <joint
+    name="tank_joint"
+    type="fixed">
+
+    <origin
+      xyz="-0.10549 0 0.325"
+      rpy="1.5708 0 0" />
+
+    <parent
+      link="rear_chassis" />
+
+    <child
+      link="tank" />
+
+    <axis
+      xyz="0 0 0" />
+
+  </joint>
+
+  <gazebo reference="tank">
+		<material>Gazebo/blue</material>
+	</gazebo>
+
+</robot>
